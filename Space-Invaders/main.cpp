@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Header/GameService.h"
 
 using namespace std;
 
@@ -73,6 +74,7 @@ class Player
 
 int main()
 {
+    /*
     sf::VideoMode const video(1920, 1080);
     
     sf::RenderWindow window(video,"Space Invader",sf::Style::Default);
@@ -113,6 +115,18 @@ int main()
         window.draw(player.shipSprite);
     	// Display what was drawn
         window.display();
+        
+    }*/
+
+    GameService game_service;
+
+    game_service.ignite();
+
+    while (game_service.isRunning())
+    {
+        game_service.update();
+        game_service.render();
     }
+
     return 0;
 }
