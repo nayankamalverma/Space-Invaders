@@ -1,15 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <__msvc_filebuf.hpp>
 
 using namespace std;
 
 class Player
 {
 
-    int playerScore;
+    
     int health;
     int movementSpeed;
+	int playerScore;
     sf::Vector2f position;
       
     public:
@@ -17,6 +17,11 @@ class Player
         sf::Texture shipTexture;
         sf::Sprite shipSprite;
 
+
+    Player(int hp=100,int speed=10): health(hp),movementSpeed(speed)
+    {
+        playerScore = 0;
+    }
     //getter setter
     
     //score
@@ -60,9 +65,9 @@ class Player
 
 
     void takeDamage() {}
-    void move()
+    void move(float offSet)
 	{
-        cout << "move";
+        position.x -= offSet * movementSpeed;
 	}
     void shootBullets() {}
 };
@@ -81,7 +86,7 @@ int main()
     //creating ship sprite
     player.shipTexture.loadFromFile("assets/textures/player_ship.png");
     player.shipSprite.setTexture(player.shipTexture);
-    player.setPlayerPosition(sf::Vector2f(900, 500));
+    player.setPlayerPosition(sf::Vector2f(900, 870));
     player.shipSprite.setPosition(player.getPlayerPosition());
 
 
@@ -95,17 +100,19 @@ int main()
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            player.move();
+            player.move(1);
         }
     	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            player.move();
+            player.move(-1);
         }
 
         // Clear the window
-        window.clear(sf::Color::Blue);
+        window.clear();
+        player.shipSprite.setPosition(player.getPlayerPosition());
         // Draw your content here
+
         window.draw(player.shipSprite);
-        // Display what was drawn
+    	// Display what was drawn
         window.display();
     }
     return 0;
