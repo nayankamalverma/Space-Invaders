@@ -33,7 +33,7 @@ void EventService::processEvents()
 
 bool EventService::hasQuitGame()
 {
-	return (isKeyboardEvent() && pressedEscapeKey());
+	return (pressedEscapeKey());
 }
 
 bool EventService::isKeyboardEvent()
@@ -41,9 +41,15 @@ bool EventService::isKeyboardEvent()
 	return game_event.type == sf::Event::KeyPressed;
 }
 
-bool EventService::pressedEscapeKey() { return game_event.key.code == sf::Keyboard::Escape; }
+
+
+
+bool EventService::pressedEscapeKey() { return sf::Keyboard::isKeyPressed(sf::Keyboard::Escape); }
 
 bool EventService::isGameWindowOpen() { return game_window != nullptr; }
 
 bool EventService::gameWindowWasClosed() { return game_event.type == sf::Event::Closed; }
 
+bool EventService::pressedLeftKey(){ return  sf::Keyboard::isKeyPressed(sf::Keyboard::Left); }
+
+bool EventService::pressedRightKey(){ return  sf::Keyboard::isKeyPressed(sf::Keyboard::Right); }

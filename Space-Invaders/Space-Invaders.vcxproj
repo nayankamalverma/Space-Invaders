@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\PlayerService.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\EventService.cpp" />
     <ClCompile Include="Source\GameService.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Header\EventService.h" />
     <ClInclude Include="Header\GameService.h" />
     <ClInclude Include="Header\GraphicService.h" />
+    <ClInclude Include="Header\PlayerService.h" />
     <ClInclude Include="Header\ServiceLocator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
