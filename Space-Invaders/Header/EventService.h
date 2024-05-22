@@ -20,6 +20,10 @@ public:
 	void initialize();
 	void update();
 	void processEvents(); 
+
 	bool pressedEscapeKey();
 	bool isKeyboardEvent();
+	bool pressedLeftKey();
+	bool pressedRightKey();
+	
 };
