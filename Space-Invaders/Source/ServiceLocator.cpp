@@ -1,22 +1,49 @@
 #include "../Header/ServiceLocator.h"
 
+ServiceLocator::ServiceLocator()
+{
+	graphic_service = nullptr;
+	createServices();
+}
+
+ServiceLocator::~ServiceLocator()
+{
+	clearAllServices();
+}
+
 ServiceLocator* ServiceLocator::getInstance()
 {
-	//Provides a method to access the unique ServiceLocator instance (object).
+	static ServiceLocator instance;
+	return &instance;
+}
+
+void ServiceLocator::createServices()
+{
+	graphic_service = new GraphicService();
+}
+
+void ServiceLocator::clearAllServices()
+{
+	delete(graphic_service);
+	graphic_service = nullptr;
 }
 
 void ServiceLocator::initialize()
 {
-	//	Initializes the ServiceLocator.
+	graphic_service->initialize();
 }
 
 void ServiceLocator::update()
 {
-	//	Updates all services.
+	graphic_service->update();
 }
 
 void ServiceLocator::render()
 {
-	//	Renders using the services.
+	graphic_service->render();
 }
 
+GraphicService* ServiceLocator::getGraphicService()
+{
+	return graphic_service;
+}
