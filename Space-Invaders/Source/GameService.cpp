@@ -1,5 +1,6 @@
 #include "../Header/GameService.h"
 #include "../Header/GraphicService.h"
+#include "../Header/EventService.h"
 
 GameService::GameService()
 {
@@ -30,6 +31,7 @@ void GameService::initializeVariables()
 
 void GameService::update()
 {
+	service_locator->getEventService()->processEvents();
 	service_locator->update();
 }
 
@@ -49,6 +51,6 @@ bool GameService::isRunning()
 
 void GameService::destroy()
 {
-
+	
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Header/GraphicService.h"
+#include "../Header/EventService.h"
 
 class ServiceLocator
 {
@@ -11,6 +12,7 @@ private:
     // - graphic_service: Handles graphics-related tasks.
     // ..........................
     GraphicService* graphic_service;
+    EventService* event_service;
     // ..........................
 
     ServiceLocator();
@@ -33,4 +35,5 @@ public:
     // Methods to Get Specific Services: 
     
     GraphicService* getGraphicService();
+    EventService* getEventService();
 };
