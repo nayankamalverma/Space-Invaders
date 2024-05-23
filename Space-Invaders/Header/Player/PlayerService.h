@@ -1,18 +1,22 @@
 #pragma once
 
-//forward declaration
-class PlayerController;
-
-class PlayerService
+namespace Player
 {
-    PlayerController* player_controller;
 
-public:
-    PlayerService();
-    ~PlayerService();
+    //forward declaration
+    class PlayerController;
 
-    void initialize();
-    void update();
-    void render();
+    class PlayerService
+    {
+        PlayerController* player_controller;
 
-};
+    public:
+        PlayerService();
+        ~PlayerService();
+
+        void initialize();
+        void update();
+        void render();
+
+    };
+}

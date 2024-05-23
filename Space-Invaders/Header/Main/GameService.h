@@ -1,25 +1,28 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Header/ServiceLocator.h"
+#include "../../Header/Global/ServiceLocator.h"
 
-class GameService
-{
-private:
+namespace Main {
 
-	ServiceLocator* service_locator;
-	sf::RenderWindow* game_window;
-	const int frame_rate = 60;
+	class GameService
+	{
+	private:
 
-	void initialize();		// Handles game initialization.
-	void initializeVariables();// Handles variable initialization.
-	void destroy();			// Handles cleanup tasks.
+		Global::ServiceLocator* service_locator;
+		sf::RenderWindow* game_window;
+		const int frame_rate = 60;
 
-public:
-	GameService();			// Constructor for initializing the GameService object.
-	~GameService();	    // Destructor for cleaning up resources upon object deletion.
+		void initialize();		// Handles game initialization.
+		void initializeVariables();// Handles variable initialization.
+		void destroy();			// Handles cleanup tasks.
 
-	void ignite();			// Initiates the game.
-	void update();			// Updates the game logic and game state.
-	void render();			// Renders each frame of the game.
-	bool isRunning();		// Checks if the game is currently running.
-};
+	public:
+		GameService();			// Constructor for initializing the GameService object.
+		~GameService();	    // Destructor for cleaning up resources upon object deletion.
+
+		void ignite();			// Initiates the game.
+		void update();			// Updates the game logic and game state.
+		void render();			// Renders each frame of the game.
+		bool isRunning();		// Checks if the game is currently running.
+	};
+}
