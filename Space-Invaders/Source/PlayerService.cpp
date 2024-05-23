@@ -49,7 +49,7 @@ void PlayerService::initializePlayerSprite()
 
 void PlayerService::move(float offSetX)
 {
-	position.x+= offSetX * movement_speed;
+	position.x+= offSetX * movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 }
 
 

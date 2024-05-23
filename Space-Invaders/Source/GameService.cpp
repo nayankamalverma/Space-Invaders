@@ -22,6 +22,8 @@ void GameService::initialize()
 {
 	service_locator->initialize();
 	initializeVariables();
+
+	game_window->setFramerateLimit(frame_rate);
 }
 
 void GameService::initializeVariables()

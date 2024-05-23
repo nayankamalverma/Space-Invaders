@@ -5,7 +5,7 @@ class PlayerService
 {
     int health = 3;
     sf::Vector2f position = sf::Vector2f(480.0f, 600.0f);
-    int movement_speed = 5;
+    float movement_speed = 350.00;
     int player_score = 0;
 
     const sf::String player_texture_path = "assets/textures/player_ship.png";
