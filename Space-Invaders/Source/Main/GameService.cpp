@@ -1,58 +1,63 @@
-#include "../Header/GameService.h"
-#include "../Header/GraphicService.h"
-#include "../Header/EventService.h"
+#include "../../Header/Main/GameService.h"
+#include "../../Header/Graphics/GraphicService.h"
+#include "../../Header/Event/EventService.h"
 
-GameService::GameService()
-{
-	service_locator = nullptr;
-}
+namespace Main{
 
-GameService::~GameService()
-{
-	destroy();
-}
+	using namespace Global;
 
-void GameService::ignite()
-{
-	service_locator = ServiceLocator::getInstance();
-	initialize();
-}
+	GameService::GameService()
+	{
+		service_locator = nullptr;
+	}
 
-void GameService::initialize()
-{
-	service_locator->initialize();
-	initializeVariables();
+	GameService::~GameService()
+	{
+		destroy();
+	}
 
-	game_window->setFramerateLimit(frame_rate);
-}
+	void GameService::ignite()
+	{
+		service_locator = ServiceLocator::getInstance();
+		initialize();
+	}
 
-void GameService::initializeVariables()
-{
-	game_window = service_locator->getGraphicService()->getGameWindow();
-}
+	void GameService::initialize()
+	{
+		service_locator->initialize();
+		initializeVariables();
 
-void GameService::update()
-{
-	service_locator->getEventService()->processEvents();
-	service_locator->update();
-}
+		game_window->setFramerateLimit(frame_rate);
+	}
 
-void GameService::render()
-{
-	game_window->clear(service_locator->getGraphicService()->getWindowColor());
-	service_locator->render();
-	game_window->display();
-}
+	void GameService::initializeVariables()
+	{
+		game_window = service_locator->getGraphicService()->getGameWindow();
+	}
+
+	void GameService::update()
+	{
+		service_locator->getEventService()->processEvents();
+		service_locator->update();
+	}
+
+	void GameService::render()
+	{
+		game_window->clear(service_locator->getGraphicService()->getWindowColor());
+		service_locator->render();
+		game_window->display();
+	}
 
 
-bool GameService::isRunning()
-{
-	// Checks if the game is currently running.
-	return service_locator->getGraphicService()->isGameWindowOpen();
-}
+	bool GameService::isRunning()
+	{
+		// Checks if the game is currently running.
+		return service_locator->getGraphicService()->isGameWindowOpen();
+	}
 
-void GameService::destroy()
-{
-	
+	void GameService::destroy()
+	{
+		
+	}
 }
 

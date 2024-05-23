@@ -2,25 +2,30 @@
 #include <SFML/System/Vector2.hpp>
 
 //Forward Declarations
-enum class PLayerState;
-class PlayerView;
-class PlayerModel;
 
-class PlayerController
+namespace Player
 {
-	PlayerModel* player_model;
-	PlayerView* player_view;
 
-	void processPlayerInput();
-	void move(float offsetX);
+	enum class PLayerState;
+	class PlayerView;
+	class PlayerModel;
 
-public:
-	PlayerController();
-	~PlayerController();
+	class PlayerController
+	{
+		PlayerModel* player_model;
+		PlayerView* player_view;
 
-	void initialize();
-	void update();
-	void render();
+		void processPlayerInput();
+		void move(float offsetX);
 
-	sf::Vector2f getPlayerPosition();
-};
+	public:
+		PlayerController();
+		~PlayerController();
+
+		void initialize();
+		void update();
+		void render();
+
+		sf::Vector2f getPlayerPosition();
+	};
+}

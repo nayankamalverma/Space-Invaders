@@ -24,7 +24,7 @@
     <ClCompile Include="Source\Global\ServiceLocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphic\GraphicService.cpp">
+    <ClCompile Include="Source\Graphics\GraphicService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Event\EventService.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="Header\Global\ServiceLocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Graphic\GraphicService.h">
+    <ClInclude Include="Header\Graphics\GraphicService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Event\EventService.h">
