@@ -1,5 +1,7 @@
 #pragma once
-#include "Player/PlayerController.h"
+
+//forward declaration
+class PlayerController;
 
 class PlayerService
 {

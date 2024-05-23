@@ -1,7 +1,10 @@
 ﻿#include "../../Header/Player/PlayerController.h"
+#include "../../Header/Player/PlayerModel.h"
+#include "../../Header/Player/PlayerView.h"
 #include "../../Header/EventService.h"
 #include "../../Header/ServiceLocator.h"
 #include<algorithm>
+#include <iostream>
 
 PlayerController::PlayerController()
 {
@@ -53,8 +56,11 @@ void PlayerController::processPlayerInput()
 void PlayerController::move(float offsetX)
 {
 	sf::Vector2f currentPos = player_model->getPlayerPosition();
-	currentPos.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	currentPos.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime() * offsetX;
+	std::cout <<" move "<< offsetX<<std::endl;
 
 	if (offsetX > 0) currentPos.x = std::min(currentPos.x, player_model->screen_right_bound.x);
 	else currentPos.x = std::max(currentPos.x, player_model->screen_left_bound.x);
+
+	player_model->setPlayerPosition(currentPos);
 }

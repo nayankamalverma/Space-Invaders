@@ -1,7 +1,10 @@
 ﻿#pragma once
+#include <SFML/System/Vector2.hpp>
 
-#include "PlayerModel.h"
-#include "PlayerView.h"
+//Forward Declarations
+enum class PLayerState;
+class PlayerView;
+class PlayerModel;
 
 class PlayerController
 {
