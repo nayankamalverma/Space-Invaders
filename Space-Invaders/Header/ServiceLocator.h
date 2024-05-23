@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlayerService.h"
+#include "TimeService.h"
 #include "../Header/GraphicService.h"
 #include "../Header/EventService.h"
 
@@ -13,6 +14,7 @@ private:
     // - graphic_service: Handles graphics-related tasks.
     // ..........................
     GraphicService* graphic_service;
+    TimeService* time_service;
     EventService* event_service;
     PlayerService* player_service;
     // ..........................
@@ -37,6 +39,7 @@ public:
     // Methods to Get Specific Services: 
     
     GraphicService* getGraphicService();
+    TimeService* getTimeService();
     EventService* getEventService();
     PlayerService* getPlayerService();
 };

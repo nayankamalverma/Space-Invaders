@@ -8,6 +8,7 @@ private:
 
 	ServiceLocator* service_locator;
 	sf::RenderWindow* game_window;
+	const int frame_rate = 60;
 
 	void initialize();		// Handles game initialization.
 	void initializeVariables();// Handles variable initialization.
