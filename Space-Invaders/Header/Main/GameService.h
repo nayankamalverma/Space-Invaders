@@ -33,8 +33,8 @@ namespace Main {
 		bool isRunning();		// Checks if the game is currently running.
 
 	//Getter setter
-		GameState getGameState();
-		void settGameState(GameState state);
+		static GameState getGameState();
+		static void settGameState(GameState state);
 
 	};
 }

@@ -8,6 +8,7 @@ namespace Global{
 	using namespace Time;
 	using namespace Event;
 	using namespace Player;
+	using namespace UI;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -15,6 +16,7 @@ namespace Global{
 		time_service = nullptr;
 		event_service = nullptr;
 		player_service = nullptr;
+		ui_service = nullptr;
 
 		createServices();
 	}
@@ -36,6 +38,7 @@ namespace Global{
 		time_service = new TimeService();
 		event_service = new EventService();
 		player_service = new PlayerService();
+		ui_service = new UIService();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -44,10 +47,12 @@ namespace Global{
 		delete(time_service);
 		delete(event_service);
 		delete(player_service);
+		delete(ui_service);
 		graphic_service = nullptr;
 		time_service = nullptr;
 		event_service = nullptr;
 		player_service = nullptr;
+		ui_service = nullptr;
 	}
 
 	void ServiceLocator::initialize()
@@ -56,6 +61,7 @@ namespace Global{
 		time_service->initialize();
 		graphic_service->initialize();
 		player_service->initialize();
+		ui_service->initialize();
 	}
 
 	void ServiceLocator::update()
@@ -64,12 +70,14 @@ namespace Global{
 		time_service->update();
 		graphic_service->update();
 		player_service->update();
+		ui_service->update();
 	}
 
 	void ServiceLocator::render()
 	{
 		graphic_service->render();
 		player_service->render();
+		ui_service->render();
 	}
 
 	GraphicService* ServiceLocator::getGraphicService()
@@ -90,5 +98,9 @@ namespace Global{
 	PlayerService* ServiceLocator::getPlayerService()
 	{
 		return player_service;
+	}
+
+	UIService* ServiceLocator::getUIService(){
+		return ui_service;
 	}
 }
