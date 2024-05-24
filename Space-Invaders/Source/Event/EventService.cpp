@@ -1,4 +1,7 @@
 #include "../../Header/Event/EventService.h"
+
+#include <iostream>
+
 #include "../../Header/Global/ServiceLocator.h"
 
 
@@ -39,7 +42,7 @@ namespace Event
 
     bool EventService::hasQuitGame()
     {
-        return (pressedEscapeKey());
+        return pressedEscapeKey();
     }
 
     bool EventService::isKeyboardEvent()
