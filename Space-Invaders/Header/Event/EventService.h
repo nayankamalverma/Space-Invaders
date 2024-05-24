@@ -11,7 +11,6 @@ namespace Event{
 
 		bool isGameWindowOpen();
 		bool gameWindowWasClosed();
-		bool GameWindowWasClosed();
 		bool hasQuitGame();
 
 	public:
@@ -22,6 +21,11 @@ namespace Event{
 		void update();
 		void processEvents();
 
+		//mouse input
+		bool pressedLeftMouseButton();
+		bool pressedRightMouseButton();
+
+		//keyboard input
 		bool pressedEscapeKey();
 		bool isKeyboardEvent();
 		bool pressedLeftKey();

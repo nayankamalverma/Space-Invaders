@@ -28,6 +28,7 @@ namespace Main{
 	{
 		service_locator->initialize();
 		initializeVariables();
+		showMainMenu();
 
 		game_window->setFramerateLimit(frame_rate);
 	}
@@ -58,8 +59,12 @@ namespace Main{
 	}
 
 	GameState GameService::getGameState() { return current_state; }
-	void GameService::settGameState(GameState state) { current_state = state; }
+	void GameService::setGameState(GameState state) { current_state = state; }
 
+	void GameService::showMainMenu()
+	{
+		setGameState(GameState::MAIN_MENU);
+	}
 
 	void GameService::destroy()
 	{

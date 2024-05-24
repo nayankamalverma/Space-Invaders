@@ -79,7 +79,6 @@ namespace UI
             );
         }
 
-
         void MainMenuUIController::positionButtons()
         {
             float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
@@ -89,9 +88,9 @@ namespace UI
             quit_button_sprite.setPosition(x_position, 900);
         }
 
-
         void MainMenuUIController::update()
         {
+            processButtonInteractions();
         }
 
         void MainMenuUIController::render()
@@ -102,5 +101,28 @@ namespace UI
             game_window->draw(quit_button_sprite);
         }
 
+        void MainMenuUIController::processButtonInteractions()
+        {
+            sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
+
+            if (clickedButton(&play_button_sprite, mouse_position))
+            {
+                GameService::setGameState(GameState::GAMEPLAY);
+            }
+
+            if (clickedButton(&instructions_button_sprite, mouse_position))
+            {
+                printf("Clicked Instruction Button \n");
+            }
+
+            if (clickedButton(&quit_button_sprite, mouse_position))
+                game_window->close();
+        }
+
+        bool MainMenuUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
+        {
+            EventService* event_service = ServiceLocator::getInstance()->getEventService();
+            return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
+        }
     }
 }

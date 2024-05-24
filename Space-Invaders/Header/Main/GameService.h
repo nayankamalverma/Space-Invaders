@@ -23,6 +23,8 @@ namespace Main {
 		void initializeVariables();// Handles variable initialization.
 		void destroy();			// Handles cleanup tasks.
 
+		void showMainMenu();
+
 	public:
 		GameService();			// Constructor for initializing the GameService object.
 		~GameService();	    // Destructor for cleaning up resources upon object deletion.
@@ -34,7 +36,7 @@ namespace Main {
 
 	//Getter setter
 		static GameState getGameState();
-		static void settGameState(GameState state);
+		static void setGameState(GameState state);
 
 	};
 }
