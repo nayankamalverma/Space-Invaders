@@ -46,12 +46,13 @@ namespace Player
 	void PlayerController::processPlayerInput()
 	{
 		Event::EventService* event_service = Global::ServiceLocator::getInstance()->getEventService();
-		if (event_service->pressedLeftKey())
+
+		if (event_service->pressedLeftKey() || event_service->pressedAKey())
 		{
 			move(-1);
 		}
 		// we will move this to event service at a later time
-		if (event_service->pressedRightKey())
+		if (event_service->pressedRightKey() || event_service->pressedDKey())
 		{
 			move(1);
 		}
