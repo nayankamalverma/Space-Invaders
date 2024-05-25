@@ -100,5 +100,4 @@ namespace Enemy
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
 
-
 }

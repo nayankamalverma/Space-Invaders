@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics/RenderWindow.hpp>
-
+#include <vector>
 
 
 namespace Enemy
@@ -9,7 +9,13 @@ namespace Enemy
 
 	class EnemyService
 	{
+		const float spawn_interval = 3.f;
 
+		std::vector<EnemyController*> enemy_list;
+		float spawn_timer;
+
+		void updateSpawnTimer();
+		void processEnemySpawn();
 		void destroy();
 	public:
 
@@ -20,6 +26,6 @@ namespace Enemy
 		void update();
 		void render();
 
-		EnemyController* spawnEnemy();
+		void spawnEnemy();
 	};
 }
