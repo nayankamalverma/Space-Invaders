@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Header/Player/PlayerService.h"
+#include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Event/EventService.h"
@@ -21,6 +22,7 @@ namespace Global{
 	    Event::EventService* event_service;
 	    Player::PlayerService* player_service;
 		UI::UIService* ui_service;
+		Enemy::EnemyService* enemy_service;
 	    // ..........................
 
 	    ServiceLocator();
@@ -47,5 +49,6 @@ namespace Global{
 	    Event::EventService* getEventService();
 	    Player::PlayerService* getPlayerService();
 		UI::UIService* getUIService();
+		Enemy::EnemyService* getEnemyService();
 	};
 }
