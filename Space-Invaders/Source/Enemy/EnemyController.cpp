@@ -69,6 +69,7 @@ namespace Enemy
 		if (currentPosition.x >= enemy_model->right_most_position.x) //check if we reached right most pos
 		{
 			enemy_model->setMovementDirection(MovementDirection::DOWN); // move
+			//enemy_model->setEnemyPosition(currentPosition);
 			enemy_model->setReferencePosition(currentPosition);// set ref pos
 		}
 		else enemy_model->setEnemyPosition(currentPosition); //if we have not reached right most pos continue moving right
@@ -77,27 +78,43 @@ namespace Enemy
 	void EnemyController::moveLeft()
 	{
 		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-		currentPosition.x += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime(); //move
+		currentPosition.x -= enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime(); //move
 
-		if (currentPosition.x >= enemy_model->left_most_position.x) 
+		if (currentPosition.x <= enemy_model->left_most_position.x) 
 		{
-			enemy_model->setMovementDirection(MovementDirection::DOWN); 
+			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			//enemy_model->setEnemyPosition(currentPosition);
 			enemy_model->setReferencePosition(currentPosition);
 		}
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
-
+   /*
 	void EnemyController::moveDown() 
+	{
+		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+		currentPosition.y += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (currentPosition.y >= (enemy_model->vertical_travel_distance + enemy_model->getReferencePosition().y))
+		{
+			if (currentPosition.x <= enemy_model->left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
+			else enemy_model->setMovementDirection(MovementDirection::LEFT);
+
+			enemy_model->setEnemyPosition(currentPosition);
+			enemy_model->setReferencePosition(currentPosition);
+		}
+		else enemy_model->setEnemyPosition(currentPosition);
+	}
+	 */
+	void EnemyController::moveDown()
 	{
 		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 		currentPosition.y += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		if (currentPosition.y >= enemy_model->getReferencePosition().y + enemy_model->vertical_travel_distance)
 		{
-			if(enemy_model->getReferencePosition().x <= enemy_model->left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
+			if (enemy_model->getReferencePosition().x <= enemy_model->left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
 			else enemy_model->setMovementDirection(MovementDirection::LEFT);
 		}
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
-
 }
