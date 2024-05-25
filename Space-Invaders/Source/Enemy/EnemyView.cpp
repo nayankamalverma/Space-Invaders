@@ -51,6 +51,4 @@ namespace Enemy
 	{
 		game_window->draw(enemy_sprite);
 	}
-
-
 }

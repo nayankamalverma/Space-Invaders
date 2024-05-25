@@ -3,6 +3,7 @@
 
 namespace Enemy
 {
+	static EnemyController* spawn;
 	EnemyService::EnemyService()
 	{
 	}
@@ -14,7 +15,7 @@ namespace Enemy
 
 	void EnemyService::initialize()
 	{
-		spawnEnemy();
+		spawn = spawnEnemy();
 	}
 
 	EnemyController* EnemyService::spawnEnemy()
@@ -28,12 +29,12 @@ namespace Enemy
 
 	void EnemyService::update()
 	{
-		
+		spawn->update();
 	}
 
 	void EnemyService::render()
 	{
-		
+		spawn ->render();
 	}
 
 	void EnemyService::destroy()
