@@ -2,6 +2,7 @@
 #include "../../Header/Main/GameService.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Graphics/GraphicService.h"
+#include <SFML/Graphics.hpp>
 
 namespace UI
 {
@@ -83,9 +84,9 @@ namespace UI
         {
             float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
 
-            play_button_sprite.setPosition( x_position, 500.0f);
-            instructions_button_sprite.setPosition(x_position, 700);
-            quit_button_sprite.setPosition(x_position, 900);
+            play_button_sprite.setPosition( x_position, 300.0f);
+            instructions_button_sprite.setPosition(x_position, 500);
+            quit_button_sprite.setPosition(x_position, 700);
         }
 
         void MainMenuUIController::update()

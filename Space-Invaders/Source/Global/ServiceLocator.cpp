@@ -59,9 +59,9 @@ namespace Global{
 	{
 		event_service->initialize();
 		time_service->initialize();
-		graphic_service->initialize();
-		player_service->initialize();
+		graphic_service->initialize(); 
 		ui_service->initialize();
+		player_service->initialize();
 	}
 
 	void ServiceLocator::update()
