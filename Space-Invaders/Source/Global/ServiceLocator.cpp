@@ -11,6 +11,7 @@ namespace Global{
 	using namespace UI;
 	using namespace Enemy;
 	using namespace Gameplay;
+	using namespace Element;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -21,6 +22,7 @@ namespace Global{
 		enemy_service = nullptr;
 		ui_service = nullptr;
 		gameplay_service = nullptr;
+		element_service = nullptr;
 
 		createServices();
 	}
@@ -44,6 +46,7 @@ namespace Global{
 		player_service = new PlayerService();
 		enemy_service = new EnemyService();	
 		ui_service = new UIService();
+		element_service = new ElementService();
 		gameplay_service = new GameplayService();
 	}
 
@@ -56,6 +59,7 @@ namespace Global{
 		delete(enemy_service);	 
 		delete(ui_service);
 		delete(gameplay_service);
+		delete(enemy_service);
 		graphic_service = nullptr;
 		time_service = nullptr;
 		event_service = nullptr;
@@ -63,6 +67,7 @@ namespace Global{
 		enemy_service = nullptr;  
 		ui_service = nullptr;
 		gameplay_service = nullptr;
+		element_service = nullptr;
 	}
 
 	void ServiceLocator::initialize()
@@ -71,6 +76,7 @@ namespace Global{
 		time_service->initialize();
 		graphic_service->initialize(); 
 		ui_service->initialize();
+		element_service->initialize();
 		gameplay_service->initialize();
 		player_service->initialize();
 		enemy_service->initialize();
@@ -86,6 +92,7 @@ namespace Global{
 			gameplay_service->update();
 			player_service->update();
 			enemy_service->update();
+			element_service->update();
 		}
 		ui_service->update();
 	}
@@ -98,6 +105,7 @@ namespace Global{
 			gameplay_service->render();
 			player_service->render();
 			enemy_service->render();
+			element_service->render();
 		}
 		ui_service->render();
 	}
@@ -136,5 +144,8 @@ namespace Global{
 		return gameplay_service;
 	}
 
-
+	Element::ElementService* ServiceLocator::getElementService()
+	{
+	   return element_service;
+	}
 }
