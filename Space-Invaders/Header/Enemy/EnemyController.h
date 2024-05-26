@@ -11,18 +11,29 @@ namespace Enemy
 		EnemyView* enemy_view;
 		EnemyModel* enemy_model;
 
-		void move();
+		float vertical_movement_speed;
+		float horizontal_movement_speed;
+
+		virtual void move();
 		void moveLeft();
 		void moveRight();
 		void moveDown();
 	public:
 		EnemyController();
-		~EnemyController();
+		virtual ~EnemyController();
 
-		void initialize();
+		virtual void initialize();
 		void update();
 		void render();
 
 		sf::Vector2f getEnemyPosition();
+		sf::Vector2f getRandomInitialPosition();
+		void handleOutOfBounds();
+
+		float getVerticalMovementSpeed();
+		void setVerticalMovementSpeed();
+
+		float getHorizontalMovementSpeed();
+		void setHorizontalMovementSpeed();
 	};
 }
