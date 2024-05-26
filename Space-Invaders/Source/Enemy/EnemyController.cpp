@@ -1,4 +1,6 @@
 #include "../../Header/Enemy/EnemyController.h"
+
+#include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Global/ServiceLocator.h"
@@ -10,7 +12,7 @@ namespace Enemy
 	EnemyController::EnemyController()
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel();
+		enemy_model = new EnemyModel(EnemyType::SUBZERO);
 	}
 
 	EnemyController::~EnemyController()
