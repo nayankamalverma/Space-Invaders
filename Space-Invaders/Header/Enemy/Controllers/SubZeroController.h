@@ -3,6 +3,7 @@
 
 namespace Enemy
 {
+    enum class EnemyType;
     namespace Controller
     {
         class SubzeroController : public EnemyController
@@ -12,7 +13,7 @@ namespace Enemy
         	void move() override;
             void moveDown();
         public:
-            SubzeroController();
+            SubzeroController(EnemyType type);
             ~SubzeroController();
 
             void initialize() override;
