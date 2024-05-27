@@ -1,13 +1,16 @@
 #pragma once
 
-class BulletService
+namespace Bullet
 {
+	class BulletService
+	{
 
-public:
-	BulletService();
-	~BulletService();
+	public:
+		BulletService();
+		~BulletService();
 
-	void initialize();
-	void update();
-	void render();
-};
+		void initialize();
+		void update();
+		void render();
+	};
+}
