@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Time/TimeService.h"
@@ -8,6 +7,8 @@
 #include "../../Header/UI/UIService.h"
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Elements/ElementService.h"
+#include "../Sound/SoundService.h"
+
 
 namespace Global{
 
@@ -27,6 +28,7 @@ namespace Global{
 		Gameplay::GameplayService* gameplay_service;
 		Element::ElementService* element_service;
 		UI::UIService* ui_service;
+		Sound::SoundService* sound_service;
 		// ..........................
 
 	    ServiceLocator();
@@ -56,5 +58,6 @@ namespace Global{
 		UI::UIService* getUIService();
 		Element::ElementService* getElementService();
 		Gameplay::GameplayService* getGamePlayService();
+	    Sound::SoundService* getSoundService();
 	};
 }
