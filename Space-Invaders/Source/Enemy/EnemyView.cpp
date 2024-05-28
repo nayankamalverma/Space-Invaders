@@ -39,6 +39,19 @@ namespace Enemy
 				scaleEnemySprite();
 			}
 			break;
+		case::Enemy::EnemyType::UFO:
+			if(enemy_texture.loadFromFile(ufo_texture_path))
+			{
+				enemy_sprite.setTexture(enemy_texture);
+				scaleEnemySprite();
+			}
+			break;
+		case::Enemy::EnemyType::THUNDER_SNAKE:
+			if(enemy_texture.loadFromFile(thunder_snake_texture_path))
+			{
+				enemy_sprite.setTexture(enemy_texture);
+				scaleEnemySprite();
+			}
 		}
 
 	}

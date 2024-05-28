@@ -14,6 +14,7 @@ namespace Global{
 	using namespace Element;
 	using namespace Sound;
 	using namespace Bullet;
+	using namespace Powerup;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -53,6 +54,7 @@ namespace Global{
 		gameplay_service = new GameplayService();
 		sound_service = new SoundService();
 		bullet_service = new BulletService();
+		powerup_service = new PowerupService();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -67,6 +69,7 @@ namespace Global{
 		delete(enemy_service);
 		delete(sound_service);
 		delete(bullet_service);
+		delete(powerup_service);
 		graphic_service = nullptr;
 		time_service = nullptr;
 		event_service = nullptr;
@@ -77,6 +80,7 @@ namespace Global{
 		element_service = nullptr;
 		sound_service = nullptr;
 		bullet_service = nullptr;
+		powerup_service = nullptr;
 	}
 
 	void ServiceLocator::initialize()
@@ -91,6 +95,7 @@ namespace Global{
 		player_service->initialize();
 		enemy_service->initialize();
 		bullet_service->initialize();
+		powerup_service->initialize();
 	}
 
 	void ServiceLocator::update()
@@ -105,6 +110,7 @@ namespace Global{
 			enemy_service->update();
 			bullet_service->update();
 			element_service->update();
+			powerup_service->update();
 		}
 		ui_service->update();
 	}
@@ -119,6 +125,7 @@ namespace Global{
 			enemy_service->render();
 			bullet_service->render();
 			element_service->render();
+			powerup_service->render();
 		}
 		ui_service->render();
 	}
@@ -170,5 +177,10 @@ namespace Global{
 	{
 		return bullet_service;
 	}
+	Powerup::PowerupService* ServiceLocator::getPowerupService()
+	{
+		return powerup_service;
+	}
+
 
 }
