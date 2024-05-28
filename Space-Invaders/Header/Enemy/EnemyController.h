@@ -12,13 +12,20 @@ namespace Enemy
 	class EnemyController
 	{
 	protected:
+		float vertical_movement_speed = 30.f;
+		float horizontal_movement_speed = 200.0f;
+
+		float rate_of_fire = 3.f; //we want to fire the bullet every 3 seconds
+		float elapsed_fire_duration = 0.f;	  //variable to check how long it has been since we last fired
+
 		EnemyView* enemy_view;
 		EnemyModel* enemy_model;
 
-		virtual void move()=0;
-		//void moveLeft();
-		//void moveRight();
-		//void moveDown();
+		void updateFireTimer();
+		void processBulletFire();
+		virtual void fireBullet() = 0;
+
+		virtual void move() = 0;
 
 		sf::Vector2f getRandomInitialPosition();
 		void handleOutOfBounds();

@@ -8,6 +8,7 @@
 
 namespace Player
 {
+	using namespace Global;
 
 	PlayerController::PlayerController()
 	{
@@ -45,7 +46,7 @@ namespace Player
 
 	void PlayerController::processPlayerInput()
 	{
-		Event::EventService* event_service = Global::ServiceLocator::getInstance()->getEventService();
+		Event::EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
 		if (event_service->pressedLeftKey() || event_service->pressedAKey())
 		{
@@ -56,12 +57,18 @@ namespace Player
 		{
 			move(1);
 		}
+		if (event_service->pressedLeftMouseButton())  fireBullet();
 	}
-
+	 void PlayerController::fireBullet()
+	{
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET,
+		                                                                       player_model->getPlayerPosition() + player_model->barrel_position_offset,
+		                                                                       Bullet::MovementDirection::UP);
+	}
 	void PlayerController::move(float offsetX)
 	{
 		sf::Vector2f currentPos = player_model->getPlayerPosition();
-		currentPos.x += player_model->player_movement_speed * Global::ServiceLocator::getInstance()->getTimeService()->getDeltaTime() * offsetX;
+		currentPos.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime() * offsetX;
 
 		if (offsetX > 0) currentPos.x = std::min(currentPos.x, player_model->screen_right_bound.x);
 		else currentPos.x = std::max(currentPos.x, player_model->screen_left_bound.x);

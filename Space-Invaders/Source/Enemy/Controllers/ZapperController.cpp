@@ -7,6 +7,7 @@
 namespace Enemy
 {
     using namespace Global;
+    using namespace Bullet;
 
     namespace Controller
     {
@@ -17,6 +18,16 @@ namespace Enemy
         void ZapperController::initialize()
         {
             EnemyController::initialize(); // init the base controller
+            rate_of_fire = zapper_rate_of_fire;
+        }
+
+
+        void ZapperController::fireBullet()
+        {
+            // we spawn the bullet and pass the needed parameters
+            ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+                enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+                Bullet::MovementDirection::DOWN);
         }
 
         // Method for moving the Zapper enemy
@@ -49,7 +60,7 @@ namespace Enemy
             sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 
             // Update the position to move left
-            currentPosition.x -= enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+            currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
             // Check if the enemy reached the leftmost position
             if (currentPosition.x <= enemy_model->left_most_position.x)
@@ -72,7 +83,7 @@ namespace Enemy
             sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
 
             // Update the position to move right
-            currentPosition.x += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+            currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
             // Check if the enemy reached the rightmost position
             if (currentPosition.x >= enemy_model->right_most_position.x)
@@ -83,19 +94,14 @@ namespace Enemy
             }
             else
             {
-                // Update the enemy position
                 enemy_model->setEnemyPosition(currentPosition);
             }
         }
 
-        // Method for moving the Zapper enemy down
         void ZapperController::moveDown()
         {
-            // Get the current position of the enemy
             sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-
-            // Update the position to move down
-            currentPosition.y += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+            currentPosition.y += vertical_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
             // Check if the enemy reached the reference position plus vertical travel distance
             if (currentPosition.y >= enemy_model->getReferencePosition().y + vertical_travel_distance)

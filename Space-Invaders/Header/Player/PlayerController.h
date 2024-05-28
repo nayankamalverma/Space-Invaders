@@ -16,6 +16,7 @@ namespace Player
 		PlayerView* player_view;
 
 		void processPlayerInput();
+		void fireBullet();
 		void move(float offsetX);
 
 	public:
