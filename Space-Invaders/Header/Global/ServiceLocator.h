@@ -8,6 +8,8 @@
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Elements/ElementService.h"
 #include "../Bullet/BulletService.h"
+#include "../Powerup/PowerupConfig.h"
+#include "../Powerup/PowerupService.h"
 #include "../Sound/SoundService.h"
 
 
@@ -31,6 +33,7 @@ namespace Global{
 		UI::UIService* ui_service;
 		Sound::SoundService* sound_service;
 		Bullet::BulletService* bullet_service;
+		Powerup::PowerupService* powerup_service;
 		// ..........................
 
 	    ServiceLocator();
@@ -62,5 +65,6 @@ namespace Global{
 		Gameplay::GameplayService* getGamePlayService();
 	    Sound::SoundService* getSoundService();
 		Bullet::BulletService* getBulletService();
+		Powerup::PowerupService* getPowerupService();
 	};
 }
