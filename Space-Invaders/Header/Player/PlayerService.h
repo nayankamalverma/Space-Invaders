@@ -11,10 +11,16 @@ namespace Player
 
 	public:
 		PlayerService();
-		~PlayerService();
+		virtual ~PlayerService();
 
 		void initialize();
 		void update();
 		void render();
+
+		void enableShield();
+		void enableRapidFire();
+		void enableTrippleLaser();
+
+		void reset();
 	};
 }
