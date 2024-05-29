@@ -1,11 +1,13 @@
 #include "../../Header/Enemy/EnemyModel.h"
-#include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Enemy/EnemyConfig.h"	
+#include "../../header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
 	EnemyModel::EnemyModel(EnemyType type)
 	{
 		enemy_type = type;
+		entity_type = Entity::EntityType::ENEMY;
 	}
 
 	EnemyModel::~EnemyModel(){}
@@ -78,5 +80,6 @@ namespace Enemy
 	}
 
 
+	Entity::EntityType EnemyModel::getEntityType() { return entity_type; }
 
 }

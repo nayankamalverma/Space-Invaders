@@ -4,12 +4,14 @@
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Bullet/BulletConfig.h"
+#include "../../header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Entity;
 
 	EnemyController::EnemyController( EnemyType type)
 	{
