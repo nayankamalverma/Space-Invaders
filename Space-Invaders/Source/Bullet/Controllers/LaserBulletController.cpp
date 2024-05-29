@@ -1,10 +1,11 @@
 #include "../../Header/Bullet/Controllers/LaserBulletController.h"
+#include "../../../Header/Bullet/BulletConfig.h"
 
 namespace Bullet
 {
 	namespace Controller
 	{
-		LaserBulletController::LaserBulletController(BulletType type) : BulletController(type) { }
+		LaserBulletController::LaserBulletController(BulletType type , Entity::EntityType owner_type) : BulletController(type, owner_type) { }
 
 		LaserBulletController::~LaserBulletController() { }
 
