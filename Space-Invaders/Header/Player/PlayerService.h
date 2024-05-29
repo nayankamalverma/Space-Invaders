@@ -2,21 +2,19 @@
 
 namespace Player
 {
+	class PlayerController;
 
-    //forward declaration
-    class PlayerController;
+	class PlayerService
+	{
+	private:
+		PlayerController* player_controller;
 
-    class PlayerService
-    {
-        PlayerController* player_controller;
+	public:
+		PlayerService();
+		~PlayerService();
 
-    public:
-        PlayerService();
-        ~PlayerService();
-
-        void initialize();
-        void update();
-        void render();
-
-    };
+		void initialize();
+		void update();
+		void render();
+	};
 }

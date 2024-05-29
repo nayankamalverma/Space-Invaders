@@ -1,32 +1,36 @@
 ﻿#pragma once
-#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
 
-//Forward Declarations
 
 namespace Player
 {
+    enum class PlayerState;
 
-	enum class PLayerState;
-	class PlayerView;
-	class PlayerModel;
+    class PlayerView;
+    class PlayerModel;
 
-	class PlayerController
-	{
-		PlayerModel* player_model;
-		PlayerView* player_view;
+    class PlayerController
+    {
+    private:
+        PlayerView* player_view;
+        PlayerModel* player_model;
 
-		void processPlayerInput();
-		void fireBullet();
-		void move(float offsetX);
+        void processPlayerInput();
+        void moveLeft();
+        void moveRight();
+        void fireBullet();
 
-	public:
-		PlayerController();
-		~PlayerController();
+    public:
+        PlayerController();
+        ~PlayerController();
 
-		void initialize();
-		void update();
-		void render();
+        void initialize();
+        void update();
+        void render();
 
-		sf::Vector2f getPlayerPosition();
-	};
+        sf::Vector2f getPlayerPosition();
+        PlayerState getPlayerState();
+
+    };
+
 }
