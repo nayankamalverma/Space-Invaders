@@ -1,11 +1,11 @@
 #pragma once
-#include <SFML/Graphics.hpp>   
+#include <SFML/Graphics.hpp>
 
 namespace UI
 {
 	namespace MainMenu
 	{
-		class MainMenuUIController 
+		class MainMenuUIController
 		{
 
 			const sf::String background_texture_path = "assets/textures/space_invaders_bg.png";

@@ -1,9 +1,17 @@
 #pragma once
-
 #include "../../Header/Player/PlayerService.h"
+#include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Event/EventService.h"
+#include "../../Header/UI/UIService.h"
+#include "../../Header/Gameplay/GameplayService.h"
+#include "../../Header/Elements/ElementService.h"
+#include "../Bullet/BulletService.h"
+#include "../Powerup/PowerupConfig.h"
+#include "../Powerup/PowerupService.h"
+#include "../Sound/SoundService.h"
+
 
 namespace Global{
 
@@ -19,7 +27,14 @@ namespace Global{
 	    Time::TimeService* time_service;
 	    Event::EventService* event_service;
 	    Player::PlayerService* player_service;
-	    // ..........................
+		Enemy::EnemyService* enemy_service;
+		Gameplay::GameplayService* gameplay_service;
+		Element::ElementService* element_service;
+		UI::UIService* ui_service;
+		Sound::SoundService* sound_service;
+		Bullet::BulletService* bullet_service;
+		Powerup::PowerupService* powerup_service;
+		// ..........................
 
 	    ServiceLocator();
 
@@ -44,5 +59,12 @@ namespace Global{
 	    Time::TimeService* getTimeService();
 	    Event::EventService* getEventService();
 	    Player::PlayerService* getPlayerService();
+		Enemy::EnemyService* getEnemyService();
+		UI::UIService* getUIService();
+		Element::ElementService* getElementService();
+		Gameplay::GameplayService* getGamePlayService();
+	    Sound::SoundService* getSoundService();
+		Bullet::BulletService* getBulletService();
+		Powerup::PowerupService* getPowerupService();
 	};
 }

@@ -6,6 +6,8 @@ namespace Main{
 
 	using namespace Global;
 
+	GameState GameService::current_state = GameState::BOOT;
+
 	GameService::GameService()
 	{
 		service_locator = nullptr;
@@ -26,6 +28,7 @@ namespace Main{
 	{
 		service_locator->initialize();
 		initializeVariables();
+		showMainMenu();
 
 		game_window->setFramerateLimit(frame_rate);
 	}
@@ -53,6 +56,14 @@ namespace Main{
 	{
 		// Checks if the game is currently running.
 		return service_locator->getGraphicService()->isGameWindowOpen();
+	}
+
+	GameState GameService::getGameState() { return current_state; }
+	void GameService::setGameState(GameState state) { current_state = state; }
+
+	void GameService::showMainMenu()
+	{
+		setGameState(GameState::MAIN_MENU);
 	}
 
 	void GameService::destroy()
