@@ -1,33 +1,32 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include "../../Header/Player/PlayerController.h"
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Player
 {
+    class PlayerController;
 
     class PlayerView
     {
-        const sf::String player_texture_path = "assets/textures/player_ship.png";
-        const float player_sprite_width = 80.0f;
-        const float player_sprite_height = 80.0f;
+    private:
 
-        sf::RenderWindow* game_window;
-
-        sf::Texture player_texture;
-        sf::Sprite player_sprite;
-
-        void initializePlayerSprite();
-        void scalePlayerSprite();
+        const float player_sprite_width = 60.f;
+        const float player_sprite_height = 60.f;
 
         PlayerController* player_controller;
+        UI::UIElement::ImageView* player_image;
+
+        void createUIElements();
+        void initializeImage();
+
+        void destroy();
 
     public:
         PlayerView();
         ~PlayerView();
 
-        void initialize(PlayerController* player_controller);
+        void initialize(PlayerController* controller);
         void update();
         void render();
-
     };
 }

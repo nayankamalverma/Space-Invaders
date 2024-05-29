@@ -1,21 +1,13 @@
 #include "../../Header/Player/PlayerModel.h"
 
+
 namespace Player
 {
-	PlayerModel::PlayerModel()
-	{
+	PlayerModel::PlayerModel() { }
 
-	}
+	PlayerModel::~PlayerModel() { }
 
-	PlayerModel::~PlayerModel()
-	{
-
-	}
-
-	void PlayerModel::initialize()
-	{
-		reset();
-	}
+	void PlayerModel::initialize() { reset(); }
 
 	void PlayerModel::reset()
 	{
@@ -34,16 +26,6 @@ namespace Player
 		player_position = position;
 	}
 
-	PlayerState PlayerModel::getPlayerAlive()
-	{
-		return player_state;
-	}
-
-	void PlayerModel::setPlayerAlive(PlayerState state)
-	{
-		player_state = state;
-	}
-
 	int PlayerModel::getPlayerScore()
 	{
 		return player_score;
@@ -52,5 +34,15 @@ namespace Player
 	void PlayerModel::setPlayerScore(int score)
 	{
 		player_score = score;
+	}
+
+	PlayerState PlayerModel::getPlayerState()
+	{
+		return player_state;
+	}
+
+	void PlayerModel::setPlayerState(PlayerState state)
+	{
+		player_state = state;
 	}
 }

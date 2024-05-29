@@ -3,12 +3,13 @@
 #include "../../Header/Player/PlayerView.h"
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include<algorithm>
-#include <iostream>
+#include "../../Header/Bullet/BulletConfig.h"
 
 namespace Player
 {
 	using namespace Global;
+	using namespace Event;
+	using namespace Bullet;
 
 	PlayerController::PlayerController()
 	{
@@ -18,8 +19,8 @@ namespace Player
 
 	PlayerController::~PlayerController()
 	{
-		delete(player_view);
-		delete(player_model);
+		delete (player_view);
+		delete (player_model);
 	}
 
 	void PlayerController::initialize()
@@ -44,35 +45,45 @@ namespace Player
 		return player_model->getPlayerPosition();
 	}
 
+	PlayerState PlayerController::getPlayerState()
+	{
+
+		return player_model->getPlayerState();
+
+	}
+
+
 	void PlayerController::processPlayerInput()
 	{
-		Event::EventService* event_service = ServiceLocator::getInstance()->getEventService();
+		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedLeftKey() || event_service->pressedAKey())
-		{
-			move(-1);
-		}
-		// we will move this to event service at a later time
-		if (event_service->pressedRightKey() || event_service->pressedDKey())
-		{
-			move(1);
-		}
-		if (event_service->pressedLeftMouseButton())  fireBullet();
+		if (event_service->pressedLeftKey() || event_service->pressedAKey()) moveLeft();
+		if (event_service->pressedRightKey() || event_service->pressedDKey()) moveRight();
+		if (event_service->pressedLeftMouseButton()) fireBullet(); //this
 	}
-	 void PlayerController::fireBullet()
+
+	void PlayerController::fireBullet()
 	{
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET,
-		                                                                       player_model->getPlayerPosition() + player_model->barrel_position_offset,
-		                                                                       Bullet::MovementDirection::UP);
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+			player_model->getPlayerPosition() + player_model->barrel_position_offset,
+			Bullet::MovementDirection::UP);
 	}
-	void PlayerController::move(float offsetX)
+
+	void PlayerController::moveLeft()
 	{
-		sf::Vector2f currentPos = player_model->getPlayerPosition();
-		currentPos.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime() * offsetX;
+		sf::Vector2f currentPosition = player_model->getPlayerPosition();
+		currentPosition.x -= player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-		if (offsetX > 0) currentPos.x = std::min(currentPos.x, player_model->screen_right_bound.x);
-		else currentPos.x = std::max(currentPos.x, player_model->screen_left_bound.x);
+		currentPosition.x = std::max(currentPosition.x, player_model->left_most_position.x);
+		player_model->setPlayerPosition(currentPosition);
+	}
 
-		player_model->setPlayerPosition(currentPos);
+	void PlayerController::moveRight()
+	{
+		sf::Vector2f currentPosition = player_model->getPlayerPosition();
+		currentPosition.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
+		player_model->setPlayerPosition(currentPosition);
 	}
 }
