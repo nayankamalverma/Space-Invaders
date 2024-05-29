@@ -30,13 +30,13 @@ namespace Player
         bool processBulletCollision(ICollider* other_collider);
         bool processPowerupCollision(ICollider* other_collider);
         bool processEnemyCollision(ICollider* other_collider);
-        void updateFreezDuration();
+        void updateFreezeDuration();
         void freezPlayer();
 
         void updateFireDuration();
         void processBulletFire();
-        void FireBullet(bool b_tripple_laser = false);
-        void FireBullet(sf::Vector2f position);
+        void fireBullet(bool b_tripple_laser = false);
+        void fireBullet(sf::Vector2f position);
 
         void updatePowerupDuration();
 
