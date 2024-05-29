@@ -175,7 +175,9 @@
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="Source\UI\UIElement\ImageView.cpp" />
     <ClCompile Include="Source\UI\UIService.cpp" />
+    <ClCompile Include="Source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Bullet\BulletConfig.h" />
@@ -223,10 +225,12 @@
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
-    <ClInclude Include="Header\UI\IUIController.h" />
+    <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenu\MainMenuUIController.h" />
+    <ClInclude Include="Header\UI\UIElement\ImageView.h" />
     <ClInclude Include="Header\UI\UIService.h" />
     <ClInclude Include="Header\Enemy\EnemyModel.h" />
+    <ClInclude Include="Header\UI\UIElement\UIView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
