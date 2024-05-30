@@ -38,7 +38,6 @@ namespace UI
                 image_sprite.setTexture(image_texture);
             }
         }
-
         void ImageView::setScale(float width, float height)
         {
             float scale_x = width / image_sprite.getTexture()->getSize().x;
@@ -79,7 +78,7 @@ namespace UI
 
         const sf::Sprite& ImageView::getSprite()
         {
-            return image_sprite; 
+            return image_sprite;
         }
     }
 }
