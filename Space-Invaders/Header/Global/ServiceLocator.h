@@ -11,6 +11,7 @@
 #include "../Powerup/PowerupConfig.h"
 #include "../Powerup/PowerupService.h"
 #include "../Sound/SoundService.h"
+#include "../../Header/Collision/CollisionService.h"
 
 
 namespace Global{
@@ -34,6 +35,7 @@ namespace Global{
 		Sound::SoundService* sound_service;
 		Bullet::BulletService* bullet_service;
 		Powerup::PowerupService* powerup_service;
+		Collision::CollisionService* collision_service;
 		// ..........................
 
 	    ServiceLocator();
@@ -66,5 +68,6 @@ namespace Global{
 	    Sound::SoundService* getSoundService();
 		Bullet::BulletService* getBulletService();
 		Powerup::PowerupService* getPowerupService();
+		Collision::CollisionService* getCollisionService();
 	};
 }
