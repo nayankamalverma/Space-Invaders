@@ -1,97 +1,79 @@
-#include "../../header/Enemy/Controllers/UFOController.h"
+#include "../../Header/Enemy/Controllers/UFOController.h"
 #include "../../Header/Enemy/EnemyModel.h"
-#include "../../header/Enemy/EnemyConfig.h"
+#include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+
 
 namespace Enemy
 {
-    namespace Controller
-    {
-        using namespace Global;
+	using namespace Global;
+	using namespace Bullet;
 
-        UFOController::UFOController(EnemyType type)  :EnemyController(type)   {}
+	namespace Controller
+	{
+		UFOController::UFOController(EnemyType type) : EnemyController(type) { }
 
-        UFOController::~UFOController()
-        {
-	        
-        }
+		UFOController::~UFOController() { }
 
-        void UFOController::initialize()
-        {
-            EnemyController::initialize();
-            enemy_model->setMovementDirection(MovementDirection::LEFT);
-        }
+		void UFOController::initialize()
+		{
+			EnemyController::initialize();
+		}
 
-        void UFOController::fireBullet()
-        {
-	        
-        }
-        Powerup::PowerupType UFOController::getRandomPowerupType()
-        {
-            std::srand(static_cast<unsigned int>(std::time(nullptr)));
+		void UFOController::fireBullet()
+		{
+		}
 
-            int random_value = std::rand() % (static_cast<int>(Powerup::PowerupType::OUTSCAL_BOMB) + 1);
-            return static_cast<Powerup::PowerupType>(random_value);
-        }
-        void UFOController::move()
-        {
-            switch (enemy_model->getMovementDirection())
-            {
-                // If the movement direction is LEFT
-            case::Enemy::MovementDirection::LEFT:
-                moveLeft();
-                break;
+		Powerup::PowerupType UFOController::getRandomPowerupType()
+		{
+			std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-                // If the movement direction is RIGHT
-            case::Enemy::MovementDirection::RIGHT:
-                moveRight();
-                break;
-            }
-        }
-        void UFOController::moveLeft()
-        {
-            sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			//We add '1'  to OutscalBomb below because enum has a 0 index, making the bomb number 3, we need to add 1 to make it 4 
 
-            // Update the position to move left
-            currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			int random_value = std::rand() % (static_cast<int>(Powerup::PowerupType::OUTSCAL_BOMB) + 1);
+			return static_cast<Powerup::PowerupType>(random_value);
+		}
 
-            // Check if the enemy reached the leftmost position
-            if (currentPosition.x <= enemy_model->left_most_position.x)
-            {
-                enemy_model->setMovementDirection(MovementDirection::RIGHT);
-                enemy_model->setReferencePosition(currentPosition);
-            }
-            else
-            {
-                enemy_model->setEnemyPosition(currentPosition);
-            }
-        }
-        void UFOController::moveRight()
-        {
-            sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+		void UFOController::move()
+		{
+			switch (enemy_model->getMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				moveLeft();
+				break;
 
-            // Update the position to move right
-            currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			case::Enemy::MovementDirection::RIGHT:
+				moveRight();
+				break;
+			}
 
-            // Check if the enemy reached the rightmost position
-            if (currentPosition.x >= enemy_model->right_most_position.x)
-            {
-                // Set movement direction to DOWN and update reference position
-                enemy_model->setMovementDirection(MovementDirection::LEFT);
-                enemy_model->setReferencePosition(currentPosition);
-            }
-            else
-            {
-                enemy_model->setEnemyPosition(currentPosition);
-            }
-        }
+		}
 
+		void UFOController::moveLeft()
+		{
+			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			currentPosition.x -= horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
+			if (currentPosition.x <= enemy_model->left_most_position.x)
+			{
+				enemy_model->setMovementDirection(MovementDirection::RIGHT);
+				enemy_model->setReferencePosition(currentPosition);
+			}
+			else enemy_model->setEnemyPosition(currentPosition);
+		}
 
+		void UFOController::moveRight()
+		{
+			sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
+			currentPosition.x += horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-
-
-
-        
-    }
+			if (currentPosition.x >= enemy_model->right_most_position.x)
+			{
+				enemy_model->setMovementDirection(MovementDirection::LEFT);
+				enemy_model->setReferencePosition(currentPosition);
+			}
+			else enemy_model->setEnemyPosition(currentPosition);
+		}
+	}
 }
