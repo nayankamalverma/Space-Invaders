@@ -1,13 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../Header/Global/ServiceLocator.h"
+#include "../../header/Global/ServiceLocator.h"
 
-namespace Main {
+namespace Main
+{
 	enum class GameState
 	{
 		BOOT,
+		SPLASH_SCREEN,
 		MAIN_MENU,
-		GAMEPLAY
+		INSTRUCTIONS,
+		GAMEPLAY,
+		CREDITS,
 	};
 
 	class GameService
@@ -17,26 +21,22 @@ namespace Main {
 
 		Global::ServiceLocator* service_locator;
 		sf::RenderWindow* game_window;
-		const int frame_rate = 60;
 
-		void initialize();		// Handles game initialization.
-		void initializeVariables();// Handles variable initialization.
-		void destroy();			// Handles cleanup tasks.
-
-		void showMainMenu();
+		void initialize();
+		void initializeVariables();
+		void showSplashScreen();
+		void destroy();
 
 	public:
-		GameService();			// Constructor for initializing the GameService object.
-		~GameService();	    // Destructor for cleaning up resources upon object deletion.
+		GameService();
+		virtual ~GameService();
 
-		void ignite();			// Initiates the game.
-		void update();			// Updates the game logic and game state.
-		void render();			// Renders each frame of the game.
-		bool isRunning();		// Checks if the game is currently running.
+		void ignite();
+		void update();
+		void render();
+		bool isRunning();
 
-	//Getter setter
+		static void setGameState(GameState new_state);
 		static GameState getGameState();
-		static void setGameState(GameState state);
-
 	};
 }

@@ -1,6 +1,8 @@
 ﻿#pragma once
-#include "../../Header/UI/MainMenu/MainMenuUIController.h"
-#include "../../Header/UI/Interface/IUIController.h"
+#include "../../header/UI/MainMenu/MainMenuUIController.h"
+#include "../../Header/UI/SplashScreenUI/SplashScreenUIController.h"
+#include "../../header/UI/GameplayUI/GameplayUIController.h"
+#include "../../header/UI/Interface/IUIController.h"
 
 namespace UI
 {
@@ -8,6 +10,8 @@ namespace UI
 	{
 	private:
 		MainMenu::MainMenuUIController* main_menu_controller;
+		GameplayUI::GameplayUIController* gameplay_ui_controller;
+		SplashScreen::SplashScreenUIController* splash_screen_ui_controller;
 
 		void createControllers();
 		void initializeControllers();
