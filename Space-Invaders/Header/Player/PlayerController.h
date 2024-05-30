@@ -30,19 +30,21 @@ namespace Player
         bool processBulletCollision(ICollider* other_collider);
         bool processPowerupCollision(ICollider* other_collider);
         bool processEnemyCollision(ICollider* other_collider);
-        void updateFreezeDuration();
+        void updateFreezDuration();
         void freezPlayer();
 
         void updateFireDuration();
         void processBulletFire();
-        void fireBullet(bool b_tripple_laser = false);
-        void fireBullet(sf::Vector2f position);
+        void FireBullet(bool b_tripple_laser = false);
+        void FireBullet(sf::Vector2f position);
 
         void updatePowerupDuration();
 
         void disableShield();
         void disableRapidFire();
         void disableTrippleLaser();
+
+
 
     public:
         PlayerController();
@@ -53,6 +55,10 @@ namespace Player
         void render();
 
         void reset();
+
+        void decreasePlayerLive();
+        inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
+
 
         void enableShield();
         void enableRapidFire();
