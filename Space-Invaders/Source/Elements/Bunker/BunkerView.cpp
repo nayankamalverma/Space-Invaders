@@ -1,5 +1,7 @@
 #include "../../header/Elements/Bunker/BunkerView.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Graphics/GraphicService.h"
+#include "../../header/Global/Config.h"
 #include "../../header/Elements/Bunker/BunkerController.h"
 
 namespace Element
@@ -7,44 +9,47 @@ namespace Element
 	namespace Bunker
 	{
 		using namespace Global;
+		using namespace Graphics;
+		using namespace UI::UIElement;
 
-		BunkerView::BunkerView() { }
+		BunkerView::BunkerView() { createUIElements(); }
 
-		BunkerView::~BunkerView() { }
+		BunkerView::~BunkerView() { destroy(); }
 
 		void BunkerView::initialize(BunkerController* controller)
 		{
 			bunker_controller = controller;
-			game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 			initializeImage();
+		}
+
+		void BunkerView::createUIElements()
+		{
+			bunker_image = new ImageView();
 		}
 
 		void BunkerView::initializeImage()
 		{
-			if (bunker_texture.loadFromFile(bunker_texture_path))
-			{
-				bunker_sprite.setTexture(bunker_texture);
-				scaleSprite();
-			}
-		}
-
-		void BunkerView::scaleSprite()
-		{
-			bunker_sprite.setScale(
-				static_cast<float>(bunker_sprite_width) / bunker_sprite.getTexture()->getSize().x,
-				static_cast<float>(bunker_sprite_height) / bunker_sprite.getTexture()->getSize().y
-			);
+			bunker_image->initialize(Config::bunker_texture_path, bunker_sprite_width, bunker_sprite_height, bunker_controller->getBunkerPosition());
 		}
 
 		void BunkerView::update()
 		{
-			bunker_sprite.setPosition(bunker_controller->getBunkerPosition());
+			bunker_image->update();
 		}
 
 		void BunkerView::render()
 		{
-			game_window->draw(bunker_sprite);
+			bunker_image->render();
 		}
 
+		const sf::Sprite& BunkerView::getBunkerSprite()
+		{
+			return bunker_image->getSprite();
+		}
+
+		void BunkerView::destroy()
+		{
+			delete(bunker_image);
+		}
 	}
 }
